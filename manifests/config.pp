@@ -14,7 +14,6 @@
 #
 class solr::config(
   $cores = 'UNSET',
-  $solr_version = '4.6.1',
 ) {
   include solr::params
 

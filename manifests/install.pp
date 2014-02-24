@@ -24,13 +24,13 @@ class solr::install {
   if defined( Package['wget'] ) {
     debug("wget already installed")
   } else {
-    package { 'wget: ensure => present }
+    package { 'wget': ensure => present }
   }
     
   if defined( Package['curl'] ) {
     debug("curls already installed")
   } else {
-    package { 'curl: ensure => present }
+    package { 'curl': ensure => present }
   }
 }
 

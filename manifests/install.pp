@@ -20,13 +20,17 @@ class solr::install {
     ensure  => present,
     require => Package['jetty'],
   }
-
-  package { 'wget':
-    ensure  => present,
+  
+  if defined( Package['wget'] ) {
+    debug("wget already installed")
+  } else {
+    package { 'wget: ensure => present }
   }
-
-  package { 'curl':
-    ensure  => present,
+    
+  if defined( Package['curl'] ) {
+    debug("curls already installed")
+  } else {
+    package { 'curl: ensure => present }
   }
 }
 

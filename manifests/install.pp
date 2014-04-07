@@ -11,14 +11,14 @@ class solr::install {
     ensure  => present,
   }
 
-  package { 'jetty-eclipse':
+  package { 'jetty':
     ensure  => present,
     require => Package['java-1.7.0-openjdk'],
   }
 
   #package { 'libjetty-extra':
   #  ensure  => present,
-  # require => Package['jetty-eclipse'],
+  # require => Package['jetty'],
   #}
   
   if defined( Package['wget'] ) {

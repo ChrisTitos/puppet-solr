@@ -11,7 +11,7 @@ class solr::service {
     ensure      => running,
     hasrestart  => true,
     hasstatus   => true,
-    require     => Package['jetty'],
+    require     => Package['jetty-eclipse'],
   }
 
 }

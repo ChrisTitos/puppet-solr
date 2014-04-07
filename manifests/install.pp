@@ -7,13 +7,13 @@
 #
 class solr::install {
 
-  package { 'default-jdk':
+  package { 'java-1.7.0-openjdk':
     ensure  => present,
   }
 
   package { 'jetty':
     ensure  => present,
-    require => Package['default-jdk'],
+    require => Package['java-1.7.0-openjdk'],
   }
 
   package { 'libjetty-extra':

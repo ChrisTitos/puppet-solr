@@ -11,15 +11,15 @@ class solr::install {
     ensure  => present,
   }
 
-  package { 'jetty':
+  package { 'jetty-eclipse':
     ensure  => present,
     require => Package['java-1.7.0-openjdk'],
   }
 
-  package { 'libjetty-extra':
-    ensure  => present,
-    require => Package['jetty'],
-  }
+  #package { 'libjetty-extra':
+  #  ensure  => present,
+  # require => Package['jetty-eclipse'],
+  #}
   
   if defined( Package['wget'] ) {
     debug("wget already installed")

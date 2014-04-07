@@ -27,14 +27,14 @@ class solr::config(
   file { '/etc/default/jetty':
     ensure  => file,
     source  => 'puppet:///modules/solr/jetty-default',
-    require => Package['jetty-eclipse'],
+    require => Package['jetty'],
   }
 
   file { $solr_home:
     ensure    => directory,
     owner     => 'jetty',
     group     => 'jetty',
-    require   => Package['jetty-eclipse'],
+    require   => Package['jetty'],
   }
 
   # download only if WEB-INF is not present and tgz file is not in /tmp:
@@ -69,7 +69,7 @@ class solr::config(
     owner     => 'jetty',
     group     => 'jetty',
     mode      => '0700',
-    require   => Package['jetty-eclipse'],
+    require   => Package['jetty'],
   }
 
   file { "${solr_home}/solr.xml":

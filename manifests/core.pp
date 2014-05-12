@@ -20,7 +20,7 @@ define solr::core(
     ensure  => directory,
     owner   => 'solr',
     group   => 'solr',
-    require => File[$solr_home],
+    require   =>  Exec['create-user'],
   }
 
   file { "${solr_home}/${core_path}/core.properties":

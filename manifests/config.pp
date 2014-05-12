@@ -32,7 +32,7 @@ class solr::config(
     group     =>  'solr',
   }
 
-  file { 'var/log/solr':
+  file { '/var/log/solr':
     ensure    =>  directory,
     owner     =>  'solr',
     group     =>  'solr',

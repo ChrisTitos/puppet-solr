@@ -11,7 +11,7 @@ class solr::install {
     ensure  => present,
   }
 
-  package { 'jetty':
+  package { 'jetty6-core':
     ensure  => present,
     require => Package['java-1.7.0-openjdk'],
   }

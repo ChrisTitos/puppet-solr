@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe package('jetty') do
+describe package('jetty6-core') do
   it { should be_installed }
 end
 

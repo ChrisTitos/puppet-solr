@@ -38,7 +38,7 @@ class solr::config(
     creates   =>  "/tmp/${file_name}",
     onlyif    =>  "test ! -d ${solr_home}/dist && test ! -f /tmp/${file_name}",
     timeout   =>  0,
-    require   =>  File[$solr_home],
+    require   =>  Exec['create-user'],
   }
 
   exec { 'extract-solr':
@@ -60,15 +60,17 @@ class solr::config(
   file { '/etc/default/jetty':
     ensure    =>  file,
     source    =>  'puppet:///modules/solr/jettydefault',
+    require   =>  Exec['extract-solr'],
   }
 
   file { '/etc/init.d/jetty':
     ensure    =>  file,
     source    =>  'puppet:///modules/solr/jetty',
     mode      =>  '0777',
+    require   =>  Exec['create-user'],
   }
 
   solr::core { $cores:
-    require   =>  File[$solr_home],
+    require   =>   Exec['create-user'],
   }
 }

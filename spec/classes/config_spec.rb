@@ -8,7 +8,7 @@ describe 'solr::config' do
   it { should contain_file('/etc/default/jetty').with({
     'ensure'    =>    'file',
     'source'    =>    'puppet:///modules/solr/jetty-default',
-    'require'   =>    'Package[jetty6-core]'})
+    'require'   =>    'Package[jetty6-core]'}),
   }
 
   it { should contain_file('/usr/share/solr').with({
@@ -41,7 +41,7 @@ describe 'solr::config' do
   }
 
   it { should contain_solr__core('default').with({
-    'require'   => 'File[/usr/share/jetty/webapps/solr]'}) 
+    'require'   => 'File[/usr/share/jetty/webapps/solr]'})
   }
 
   it { should contain_exec('solr-download').with({
@@ -50,7 +50,7 @@ describe 'solr::config' do
     'creates'   =>  '/tmp/solr-4.4.0.tgz',
     'onlyif'    =>  'test ! -d /usr/share/solr/WEB-INF && test ! -f /tmp/solr-4.4.0.tgz',
     'timeout'   =>  0,
-    'require'   =>  'File[/usr/share/solr]'})  
+    'require'   =>  'File[/usr/share/solr]'})
   }
 
   it { should contain_exec('extract-solr').with({

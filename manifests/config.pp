@@ -29,10 +29,6 @@ class solr::config(
     source  => 'puppet:///modules/solr/jetty-default',
     require => Package['jetty6-core'],
   }
-  file { '/etc/yum.repos.d/jpackage.repo':
-    ensure  => file,
-    source  => 'puppet:///modules/solr/jpackage.repo',
-  }
 
   file { $solr_home:
     ensure    => directory,

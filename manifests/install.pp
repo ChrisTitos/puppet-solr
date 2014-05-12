@@ -11,26 +11,25 @@ class solr::install {
     ensure  => present,
   }
 
+  file { '/etc/yum.repos.d/jpackage.repo':
+    ensure  => file,
+    source  => 'puppet:///modules/solr/jpackage.repo',
+  }
+
   package { 'jetty6-core':
     ensure  => present,
     require => Package['java-1.7.0-openjdk'],
   }
 
-  #package { 'libjetty-extra':
-  #  ensure  => present,
-  # require => Package['jetty'],
-  #}
-  
   if defined( Package['wget'] ) {
     debug("wget already installed")
   } else {
     package { 'wget': ensure => present }
   }
-    
+
   if defined( Package['curl'] ) {
     debug("curls already installed")
   } else {
     package { 'curl': ensure => present }
   }
 }
-

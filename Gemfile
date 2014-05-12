@@ -8,9 +8,6 @@ end
 
 group :development, :test do
   gem 'rake',                    :require => false
-  gem 'rspec-puppet',            :require => false
-  gem 'puppetlabs_spec_helper',  :require => false
   gem 'puppet-lint',             :require => false
-  gem 'serverspec',              :require => false
 end
 

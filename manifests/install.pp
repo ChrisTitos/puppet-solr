@@ -11,21 +11,6 @@ class solr::install {
     ensure  => present,
   }
 
-  file { '/etc/yum.repos.d/jpackage50.repo':
-    ensure  => file,
-    source  => 'puppet:///modules/solr/jpackage50.repo',
-  }
-
-  package { 'jetty5':
-    ensure  => present,
-    require => Package['java-1.7.0-openjdk'],
-  }
-
-  package { 'jetty5-extra':
-    ensure  => present,
-    require => Package['jetty5'],
-  }
-
   if defined( Package['wget'] ) {
     debug("wget already installed")
   } else {

@@ -1,0 +1,5 @@
+JAVA_HOME=/usr/java/default
+JAVA_OPTIONS="-Djetty.port=8983 -Dstop.port=8983 -Dstop.key=chainels -Dsolr.solr.home=/opt/solr/example/solr $JAVA_OPTIONS"
+JETTY_HOME=/opt/solr/example
+JETTY_USER=solr
+JETTY_LOGS=/var/log/solr

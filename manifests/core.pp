@@ -5,39 +5,36 @@
 # - The $core to create
 #
 # === Actions
-# - Creates the solr web app directory for the core
-# - Copies over the config directory for the file
+# - Creates a directory for the core
+# - Puts core.properties in the core by a template
 # - Creates the data directory for the core
 #
 define solr::core(
   $core_name = $title,
+  $core_path = "example/solr/${title}"
 ) {
   include solr::params
-
   $solr_home  = $solr::params::solr_home
 
-  file { "${solr_home}/${core_name}":
+  file { "${solr_home}/${core_path}":
     ensure  => directory,
-    owner   => 'jetty',
-    group   => 'jetty',
+    owner   => 'solr',
+    group   => 'solr',
     require => File[$solr_home],
   }
 
-  #Copy its config over
-  file { "${solr_home}/${core_name}/conf":
-    ensure  => directory,
-    recurse => true,
-    source  => 'puppet:///modules/solr/conf',
-    require => File["${solr_home}/${core_name}"],
+  file { "${solr_home}/${core_path}/core.properties":
+    ensure  => file,
+    owner   => 'solr',
+    group   => 'solr',
+    content => template('solr/core.properties.erb'),
+    require => File["${solr_home}/${core_path}"],
   }
 
-  #Finally, create the data directory where solr stores
-  #its indexes with proper directory ownership/permissions.
-  file { "/var/lib/solr/${core_name}":
+  file { "${solr_home}/${core_path}/data":
     ensure  => directory,
-    owner   => 'jetty',
-    group   => 'jetty',
-    require => File["${solr_home}/${core_name}/conf"],
+    owner   => 'solr',
+    group   => 'solr',
+    require => File["${solr_home}/${core_path}"],
   }
-
 }

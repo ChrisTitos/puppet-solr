@@ -2,15 +2,12 @@
 # This class sets up some required parameters
 #
 # === Actions
-# - Specifies jetty and solr home directories
-# - Specifies the default core
+# - Specifies solr home directory
+# - Specifies the solr version
 #
 class solr::params {
 
-  $jetty_home = '/usr/share/jetty'
-  $solr_home = '/usr/share/solr'
-  $solr_version = '4.6.1'
-  $cores = ['default']
+  $solr_home = '/opt/solr'
+  $solr_version = '4.5.0'
 
 }
-

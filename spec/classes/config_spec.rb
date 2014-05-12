@@ -8,14 +8,14 @@ describe 'solr::config' do
   it { should contain_file('/etc/default/jetty').with({
     'ensure'    =>    'file',
     'source'    =>    'puppet:///modules/solr/jetty-default',
-    'require'   =>    'Package[jetty6-core]'}),
+    'require'   =>    'Package[jetty5]'}),
   }
 
   it { should contain_file('/usr/share/solr').with({
     'ensure'  =>  'directory',
     'owner'   =>  'jetty',
     'group'   =>  'jetty',
-    'require' =>  'Package[jetty6-core]',
+    'require' =>  'Package[jetty5]',
   })}
 
   it { should contain_file('/var/lib/solr').with({
@@ -23,7 +23,7 @@ describe 'solr::config' do
     'owner'     => 'jetty',
     'group'     => 'jetty',
     'mode'      => '0700',
-    'require'   => 'Package[jetty6-core]'})
+    'require'   => 'Package[jetty5]'})
   }
 
   it { should contain_file('/usr/share/solr/solr.xml').with({

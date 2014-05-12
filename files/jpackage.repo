@@ -1,7 +1,0 @@
-[jpackage-generic]
-name=JPackage (free), generic
-mirrorlist=http://www.jpackage.org/jpackage_generic.txt
-failovermethod=priority
-gpgcheck=1
-gpgkey=http://www.jpackage.org/jpackage.asc
-enabled=1

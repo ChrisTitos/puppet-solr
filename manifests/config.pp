@@ -22,20 +22,14 @@ class solr::config(
   exec { 'create-user':
     path      =>  ['/usr/bin', '/usr/sbin', '/bin'],
     command   =>  "useradd -d ${solr_home} -s /bin/bash solr",
-    cwd       =>  $solr_home,
     onlyif    =>  "getent passwd solr > /dev/null 2>&1",
-  }
-
-  file { $solr_home:
-    ensure    =>  directory,
-    owner     =>  'solr',
-    group     =>  'solr',
   }
 
   file { '/var/log/solr':
     ensure    =>  directory,
     owner     =>  'solr',
     group     =>  'solr',
+    require   =>  Exec['create-user'],
   }
 
   exec { 'solr-download':

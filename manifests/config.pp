@@ -17,7 +17,7 @@ class solr::config(
   $solr_home      = $::solr::params::solr_home
   $solr_version   = $::solr::params::solr_version
   $file_name      = "solr-${solr_version}.tgz"
-  $download_site  = 'http://www.eng.lsu.edu/mirrors/apache/lucene/solr'
+  $download_site  = 'https://archive.apache.org/dist/lucene/solr'
 
   exec { 'create-user':
     path      =>  ['/usr/bin', '/usr/sbin', '/bin'],

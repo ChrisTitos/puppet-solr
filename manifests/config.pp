@@ -50,7 +50,7 @@ class solr::config(
 
   exec { 'copy-solr':
     path      =>  ['/usr/bin', '/usr/sbin', '/bin'],
-    command   =>  "mv /tmp/${file_name} ${solr_home}",
+    command   =>  "mv /tmp/solr-${solr_version} ${solr_home}",
     cwd       =>  $solr_home,
     onlyif    =>  "test ! -d ${solr_home}/dist",
     require   =>  Exec['extract-solr'],

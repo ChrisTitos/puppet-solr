@@ -21,6 +21,7 @@ class solr::config(
 
   exec { 'create-user':
     path      =>  ['/usr/bin', '/usr/sbin', '/bin'],
+    onlyif    =>  "test getent passwd solr >/dev/null 2>&1",
     command   =>  "useradd -d ${solr_home} -s /bin/bash solr",
   }
 

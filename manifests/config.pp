@@ -44,7 +44,7 @@ class solr::config(
     path      =>  ['/usr/bin', '/usr/sbin', '/bin'],
     command   =>  "tar xzvf ${file_name}",
     cwd       =>  '/tmp',
-    onlyif    =>  "test -f /tmp/${file_name} && test ! -d /tmp/solr-${solr_version}",
+    onlyif    =>  "test -f /tmp/${file_name} && test ! -d /tmp/solr-${solr_version}/dist",
     require   =>  Exec['solr-download'],
   }
 
@@ -52,7 +52,7 @@ class solr::config(
     path      =>  ['/usr/bin', '/usr/sbin', '/bin'],
     command   =>  "mv /tmp/solr-${solr_version}/* ${solr_home}",
     cwd       =>  $solr_home,
-    onlyif    =>  "test -d /tmp/solr-${solr_version} test ! -d ${solr_home}/dist",
+    onlyif    =>  "test -d /tmp/solr-${solr_version}/dist test ! -d ${solr_home}/dist",
     require   =>  Exec['extract-solr'],
   }
 
